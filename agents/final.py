@@ -1,5 +1,3 @@
-from memory import save_memory
-
 def final_node(state):
     result = {
         "bug_summary": state.get("triage"),
