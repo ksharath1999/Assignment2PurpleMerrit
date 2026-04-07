@@ -9,9 +9,11 @@ class AgentState(TypedDict):
 
     repro_output: str
     repro_success: bool
+    retry_count: int  # NEW
+
+    decision: Optional[str]
 
     fix_plan: dict
     critic: dict
 
-    decision: Optional[str]  # NEW
     final_output: dict
