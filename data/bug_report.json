@@ -1,0 +1,5 @@
+{
+  "title": "Division by zero error",
+  "expected_behavior": "Should handle safely",
+  "actual_behavior": "Crash occurs when amount is 0"
+}

@@ -1,0 +1,5 @@
+ERROR: Exception occurred
+Traceback (most recent call last):
+  File "payment.py", line 10
+    fee = 100 / amount
+ZeroDivisionError: division by zero
