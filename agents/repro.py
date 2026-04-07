@@ -16,5 +16,6 @@ print(process_payment(0))
     state["repro_output"] = output
     state["repro_success"] = "Error" in output or "Exception" in output
 
-    print("✅ Repro done")
+    print(f"🔁 Repro attempt {state.get('retry_count', 0)}")
+
     return state

@@ -1,5 +1,7 @@
+from memory import save_memory
+
 def final_node(state):
-    state["final_output"] = {
+    result = {
         "summary": state.get("triage"),
         "logs": state.get("log_analysis"),
         "repro": state.get("repro_output"),
@@ -9,5 +11,12 @@ def final_node(state):
         "confidence": 0.9 if state.get("decision") == "bug_confirmed" else 0.5
     }
 
+    state["final_output"] = result
+
+    # Save memory
+    save_memory(result)
+
+    print("💾 Memory saved")
     print("✅ Final output ready")
+
     return state

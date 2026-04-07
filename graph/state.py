@@ -9,7 +9,7 @@ class AgentState(TypedDict):
 
     repro_output: str
     repro_success: bool
-    retry_count: int  # NEW
+    retry_count: int
 
     decision: Optional[str]
 
