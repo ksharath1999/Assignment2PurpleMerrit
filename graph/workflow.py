@@ -14,7 +14,7 @@ MAX_RETRIES = 2
 def retry_or_decide(state):
     if not state["repro_success"]:
         if state.get("retry_count", 0) < MAX_RETRIES:
-            state["retry_count"] = state.get("retry_count", 0) + 1
+            state["retry_count"] += 1
             print("🔄 Retrying repro...")
             return "repro"
     return "decision"
@@ -38,7 +38,6 @@ def build_graph():
     graph.add_edge("triage", "log")
     graph.add_edge("log", "repro")
 
-    # 🔥 Retry logic
     graph.add_conditional_edges(
         "repro",
         retry_or_decide,
@@ -48,7 +47,6 @@ def build_graph():
         }
     )
 
-    # 🔥 Decision routing
     graph.add_conditional_edges(
         "decision",
         route_decision,

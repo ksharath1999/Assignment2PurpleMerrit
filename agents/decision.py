@@ -1,29 +1,19 @@
-from llm import llm
+# NOTE:
+# This decision engine is designed to be replaceable with an LLM.
+# Currently using heuristic fallback for offline execution.
 
 def decision_node(state):
-    prompt = f"""
-You are an expert debugging system.
+    logs = str(state.get("log_analysis", "")).lower()
+    repro = str(state.get("repro_output", "")).lower()
 
-Logs:
-{state['log_analysis']}
-
-Reproduction Output:
-{state['repro_output']}
-
-Decide:
-- bug_confirmed
-- no_bug
-
-Respond with ONLY one word.
-"""
-
-    response = llm.invoke(prompt)
-    decision = response.content.strip().lower()
-
-    if "bug" in decision:
-        state["decision"] = "bug_confirmed"
+    if "zerodivisionerror" in logs or "zerodivisionerror" in repro:
+        decision = "bug_confirmed"
+    elif "error" in repro or "exception" in repro:
+        decision = "bug_confirmed"
     else:
-        state["decision"] = "no_bug"
+        decision = "no_bug"
 
-    print(f"🧠 LLM Decision: {state['decision']}")
+    state["decision"] = decision
+
+    print(f"🧠 Decision Engine: {decision}")
     return state

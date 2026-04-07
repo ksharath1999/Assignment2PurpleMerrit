@@ -14,7 +14,7 @@ print(process_payment(0))
     output = run_test("test_bug.py")
 
     state["repro_output"] = output
-    state["repro_success"] = "Error" in output or "Exception" in output
+    state["repro_success"] = "error" in output.lower() or "exception" in output.lower()
 
     print(f"🔁 Repro attempt {state.get('retry_count', 0)}")
 

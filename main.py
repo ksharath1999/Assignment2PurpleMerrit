@@ -10,18 +10,6 @@ def load_data():
 
     return {
         "bug_report": bug,
-        "logs": logs
-    }
-
-def load_data():
-    with open("data/bug_report.json") as f:
-        bug = json.load(f)
-
-    with open("data/logs.txt") as f:
-        logs = f.read()
-
-    return {
-        "bug_report": bug,
         "logs": logs,
         "retry_count": 0
     }

@@ -1,0 +1,26 @@
+[
+  {
+    "summary": {
+      "issue": "Crash occurs when amount is 0",
+      "priority": "high"
+    },
+    "logs": {
+      "errors": [
+        "ZeroDivisionError: division by zero"
+      ]
+    },
+    "repro": "Traceback (most recent call last):\n  File \"E:\\langgraph-bug-system\\test_bug.py\", line 5, in <module>\n    print(process_payment(0))\n          ^^^^^^^^^^^^^^^^^^\n  File \"E:\\langgraph-bug-system\\test_bug.py\", line 3, in process_payment\n    return 100 / amount\n           ~~~~^~~~~~~~\nZeroDivisionError: division by zero\n",
+    "decision": "bug_confirmed",
+    "fix": {
+      "root_cause": "Division by zero due to missing validation",
+      "patch": "if amount == 0: return 0",
+      "risk": "May hide invalid input",
+      "improvement": "Add proper validation and logging"
+    },
+    "critic": {
+      "issues": [],
+      "verdict": "Looks good"
+    },
+    "confidence": 0.9
+  }
+]

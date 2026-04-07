@@ -1,5 +1,5 @@
 
-def test():
-    x = 100 / 0
+def process_payment(amount):
+    return 100 / amount
 
-test()
+print(process_payment(0))
