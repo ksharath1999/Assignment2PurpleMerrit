@@ -2,15 +2,19 @@ from tools.repro_runner import run_test
 
 def repro_node(state):
     code = """
-def test():
-    x = 100 / 0
+def process_payment(amount):
+    return 100 / amount
 
-test()
+print(process_payment(0))
 """
+
     with open("test_bug.py", "w") as f:
         f.write(code)
 
-    state["repro_output"] = run_test("test_bug.py")
+    output = run_test("test_bug.py")
+
+    state["repro_output"] = output
+    state["repro_success"] = "Error" in output or "Exception" in output
 
     print("✅ Repro done")
     return state
