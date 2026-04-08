@@ -1,10 +1,10 @@
 🚀 Multi-Agent Bug Reproduction & Fix System (LangGraph)
-👨‍💻 Author
+## 👨‍💻 Author
 
 K Sharath
 AI/ML Engineer Candidate
 
-📌 Overview
+## 📌 Overview
 
 This project implements a production-style multi-agent debugging system using LangGraph.
 
@@ -12,7 +12,7 @@ The system ingests a bug report and logs, reproduces the issue programmatically,
 
 It simulates a real-world engineering debugging workflow using coordinated agents.
 
-🎯 Objective
+## 🎯 Objective
 
 To design a deterministic, tool-using multi-agent system that:
 
@@ -22,7 +22,8 @@ Identifies root causes
 Proposes safe fixes
 Validates and critiques the solution
 Produces structured, traceable output
-🧠 Input Mode
+
+## 🧠 Input Mode
 ✅ Option B (Log + Report Only)
 
 This system uses Option B from the assignment:
@@ -30,7 +31,8 @@ This system uses Option B from the assignment:
 No full repository required
 Generates a minimal reproduction script dynamically
 Provides patch plan at design level
-📥 Inputs
+
+##📥 Inputs
 1. Bug Report (data/bug_report.json)
 {
   "title": "Division by zero error",
@@ -49,7 +51,7 @@ Traceback (most recent call last):
 ZeroDivisionError: division by zero
 WARNING: retry attempt
 
-🧩 System Architecture
+##🧩 System Architecture
 TRIAGE → LOG ANALYSIS → REPRODUCTION → DECISION
                                       ↓
                           ┌───────────────┐
@@ -59,7 +61,8 @@ TRIAGE → LOG ANALYSIS → REPRODUCTION → DECISION
                         CRITIC
                           ↓
                         FINAL
-🤖 Agent Roles
+##🤖 Agent Roles
+
 🔹 Triage Agent
 Extracts symptoms and severity from bug report
 Defines initial problem context
