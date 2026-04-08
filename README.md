@@ -48,35 +48,17 @@ Traceback (most recent call last):
     fee = 100 / amount
 ZeroDivisionError: division by zero
 WARNING: retry attempt
+
 🧩 System Architecture
-        ┌──────────────┐
-        │   TRIAGE     │
-        └──────┬───────┘
-               ↓
-        ┌──────────────┐
-        │ LOG ANALYSIS │
-        └──────┬───────┘
-               ↓
-        ┌──────────────┐
-        │ REPRODUCTION │
-        └──────┬───────┘
-               ↓
-        ┌──────────────┐
-        │   DECISION   │
-        └──────┬───────┘
-        ┌──────┴───────────┐
-        ↓                  ↓
-   (bug_confirmed)     (no_bug)
-        ↓                  ↓
-   ┌───────────┐        ┌────────┐
-   │ FIX PLAN  │        │ FINAL  │
-   └────┬──────┘        └────────┘
-        ↓
-   ┌───────────┐
-   │  CRITIC   │
-   └────┬──────┘
-        ↓
-     FINAL
+TRIAGE → LOG ANALYSIS → REPRODUCTION → DECISION
+                                      ↓
+                          ┌───────────────┐
+                          ↓               ↓
+                    FIX PLANNER         FINAL
+                          ↓
+                        CRITIC
+                          ↓
+                        FINAL
 🤖 Agent Roles
 🔹 Triage Agent
 Extracts symptoms and severity from bug report
