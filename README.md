@@ -1,54 +1,54 @@
 🚀 Multi-Agent Bug Reproduction & Fix System (LangGraph)
+👨‍💻 Author
+
+K Sharath
+AI/ML Engineer Candidate
+
 📌 Overview
 
 This project implements a production-style multi-agent debugging system using LangGraph.
 
-The system ingests a bug report and logs, reproduces the issue, analyzes failures, and proposes a fix plan using coordinated agents.
+The system ingests a bug report and logs, reproduces the issue programmatically, analyzes failures, and generates a root-cause hypothesis, patch plan, and validation strategy.
 
-It simulates how real engineering teams triage and resolve bugs—automated through an intelligent workflow.
+It simulates a real-world engineering debugging workflow using coordinated agents.
 
-🧠 Key Features
-🔹 Multi-Agent Orchestration
-Triage Agent → extracts bug context
-Log Analysis Agent → parses and identifies errors
-Reproduction Agent → generates and runs failing code
-Decision Agent → determines if bug is confirmed
-Fix Planner Agent → proposes root cause & patch
-Critic Agent → validates and improves solution
-🔹 LangGraph Workflow (Core Highlight)
-Stateful graph-based execution
-Conditional routing (dynamic decision paths)
-Retry mechanism for robustness
-Deterministic and explainable flow
-🔹 Intelligent Decision Engine
-Heuristic-based reasoning (LLM-replaceable design)
-Designed for offline reliability
-Can be extended with LLM APIs (OpenAI, Claude)
-🔹 Automated Bug Reproduction
-Generates minimal failing script
-Executes via subprocess
-Captures real runtime errors
-🔹 Retry Mechanism
-Automatically retries reproduction on failure
-Prevents false negatives
-Improves system reliability
-🔹 Memory System
-Stores past runs in memory.json
-Enables future extension for learning/debug history
-🔹 Structured Output
+🎯 Objective
 
-Produces final structured JSON:
+To design a deterministic, tool-using multi-agent system that:
 
+Parses bug reports and logs
+Reproduces failures via executable scripts
+Identifies root causes
+Proposes safe fixes
+Validates and critiques the solution
+Produces structured, traceable output
+🧠 Input Mode
+✅ Option B (Log + Report Only)
+
+This system uses Option B from the assignment:
+
+No full repository required
+Generates a minimal reproduction script dynamically
+Provides patch plan at design level
+📥 Inputs
+1. Bug Report (data/bug_report.json)
 {
-  "summary": {...},
-  "logs": {...},
-  "repro": "...",
-  "decision": "bug_confirmed",
-  "fix": {...},
-  "critic": {...},
-  "confidence": 0.9
+  "title": "Division by zero error",
+  "description": "Crash when processing zero amount",
+  "expected_behavior": "Should handle safely",
+  "actual_behavior": "Crash occurs when amount is 0",
+  "environment": "Python 3.11, Windows",
+  "repro_hints": "Occurs when amount is 0"
 }
-🏗️ Architecture
+2. Logs (data/logs.txt)
+INFO: Starting payment processing
+ERROR: Exception occurred
+Traceback (most recent call last):
+  File "payment.py", line 10
+    fee = 100 / amount
+ZeroDivisionError: division by zero
+WARNING: retry attempt
+🧩 System Architecture
         ┌──────────────┐
         │   TRIAGE     │
         └──────┬───────┘
@@ -77,66 +77,128 @@ Produces final structured JSON:
    └────┬──────┘
         ↓
      FINAL
-⚙️ Installation
+🤖 Agent Roles
+🔹 Triage Agent
+Extracts symptoms and severity from bug report
+Defines initial problem context
+🔹 Log Analysis Agent
+Parses logs
+Extracts error signatures and stack traces
+Filters relevant evidence
+🔹 Reproduction Agent
+Generates minimal failing script (test_bug.py)
+Executes it programmatically
+Captures runtime failure
+🔹 Decision Agent
+Determines whether bug is confirmed
+Uses heuristic reasoning (LLM-replaceable design)
+🔹 Fix Planner Agent
+Identifies root cause
+Proposes patch strategy
+Highlights risks and improvements
+🔹 Critic Agent
+Validates fix safety
+Checks edge cases
+Flags weak assumptions
+⚙️ Core Features
+🔥 Multi-Agent Orchestration
+Built using LangGraph
+Stateful execution with shared data
+Explicit agent handoffs
+🔥 Conditional Workflow
+Dynamic routing based on decision agent
+Bug-confirmed vs no-bug paths
+🔥 Retry Mechanism
+Reproduction retries on failure
+Improves robustness and reliability
+🔥 Tool Usage
+Log parsing tools
+Script execution via subprocess
+Log search/filtering
+🔥 Minimal Reproducible Artifact
+Auto-generated failing script
+Consistent reproduction
+🔥 Memory System
+Stores past runs in memory.json
+Enables future learning/analysis
+🔥 Structured Output
+
+Example output:
+
+{
+  "bug_summary": {...},
+  "evidence": {...},
+  "repro_steps": "Run: python test_bug.py",
+  "repro_artifact": "test_bug.py",
+  "root_cause": "...",
+  "patch_plan": {...},
+  "validation_plan": "...",
+  "open_questions": "...",
+  "confidence": 0.9
+}
+▶️ How to Run
 pip install -r requirements.txt
-▶️ Run the Project
 python main.py
+🧪 Reproduction Details
+
+Generated file:
+
+test_bug.py
+
+Run manually:
+
+python test_bug.py
+
+Expected output:
+
+ZeroDivisionError: division by zero
+🧾 Traceability
+
+The system logs execution steps:
+
+Triage → Log Analysis → Reproduction → Decision → Fix → Critic → Final
+
+Each agent prints its progress to console, ensuring full traceability.
+
 📂 Project Structure
 langgraph-bug-system/
 │
-├── agents/        # Individual agent logic
-├── tools/         # Utility tools (log parsing, execution)
-├── graph/         # LangGraph workflow + state
-├── data/          # Input data (bug report, logs)
-├── memory.py      # Persistent memory
+├── agents/        # Agent implementations
+├── tools/         # Utility tools
+├── graph/         # LangGraph workflow
+├── data/          # Input files
+├── memory.py      # Persistent storage
 ├── main.py        # Entry point
-🧪 Example Workflow
-Load bug report + logs
-Analyze logs for error patterns
-Generate minimal reproduction
-Execute and capture failure
-Decide if bug is confirmed
-Generate fix plan
-Critically evaluate solution
-Store results in memory
-🔍 Design Highlights
+├── requirements.txt
+🧠 Design Highlights
+Modular agent architecture
+Deterministic workflow design
 Pluggable decision engine (LLM-ready)
-Deterministic fallback for reliability
-Separation of orchestration and logic
-Extensible agent-based architecture
+Separation of logic and orchestration
+Focus on reproducibility and reliability
 🚀 Future Improvements
-Integrate LLM (OpenAI / Claude) for reasoning
-Add RAG for log intelligence
-Introduce vector database for memory
-Add evaluation pipelines (regression testing)
+Integrate LLM for reasoning (OpenAI/Claude)
+Add RAG-based log intelligence
+Support large-scale log processing
+Add evaluation pipelines
 Dockerize for deployment
-🎯 Why This Project
+🎯 Key Takeaways
 
 This project demonstrates:
 
-✔ Multi-agent orchestration
-✔ LangGraph workflow design
-✔ Debugging system automation
-✔ Tool integration & execution
-✔ Production-style architecture
-
-📌 Tech Stack
-Python
-LangGraph
-Subprocess (execution engine)
-JSON-based memory system
-🧠 Author
-
-[Your Name]
-AI/ML Engineer Candidate
+✔ Multi-agent system design
+✔ Graph-based orchestration
+✔ Debugging automation
+✔ Tool-driven execution
+✔ Production-oriented architecture
 
 🎥 Demo
 
-(Attach your screen recording here showing execution + output)
+A short demo video showing system execution and output generation is included in submission.
 
-🔥 Final Note
+📌 Final Note
 
-This system is designed to simulate real-world debugging workflows, combining:
+This system is designed to mimic real-world debugging workflows, combining:
 
 agent-based reasoning
 execution-based validation
