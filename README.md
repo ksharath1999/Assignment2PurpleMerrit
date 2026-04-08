@@ -32,7 +32,7 @@ No full repository required
 Generates a minimal reproduction script dynamically
 Provides patch plan at design level
 
-##📥 Inputs
+## 📥 Inputs
 1. Bug Report (data/bug_report.json)
 {
   "title": "Division by zero error",
@@ -51,7 +51,7 @@ Traceback (most recent call last):
 ZeroDivisionError: division by zero
 WARNING: retry attempt
 
-##🧩 System Architecture
+## 🧩 System Architecture
 TRIAGE → LOG ANALYSIS → REPRODUCTION → DECISION
                                       ↓
                           ┌───────────────┐
@@ -61,7 +61,7 @@ TRIAGE → LOG ANALYSIS → REPRODUCTION → DECISION
                         CRITIC
                           ↓
                         FINAL
-##🤖 Agent Roles
+## 🤖 Agent Roles
 
 🔹 Triage Agent
 Extracts symptoms and severity from bug report
@@ -85,7 +85,8 @@ Highlights risks and improvements
 Validates fix safety
 Checks edge cases
 Flags weak assumptions
-⚙️ Core Features
+
+## ⚙️ Core Features
 🔥 Multi-Agent Orchestration
 Built using LangGraph
 Stateful execution with shared data
@@ -124,7 +125,7 @@ Example output:
 ▶️ How to Run
 pip install -r requirements.txt
 python main.py
-🧪 Reproduction Details
+## 🧪 Reproduction Details
 
 Generated file:
 
@@ -137,7 +138,7 @@ python test_bug.py
 Expected output:
 
 ZeroDivisionError: division by zero
-🧾 Traceability
+## 🧾 Traceability
 
 The system logs execution steps:
 
@@ -145,7 +146,7 @@ Triage → Log Analysis → Reproduction → Decision → Fix → Critic → Fin
 
 Each agent prints its progress to console, ensuring full traceability.
 
-📂 Project Structure
+## 📂 Project Structure
 langgraph-bug-system/
 │
 ├── agents/        # Agent implementations
@@ -161,7 +162,8 @@ Deterministic workflow design
 Pluggable decision engine (LLM-ready)
 Separation of logic and orchestration
 Focus on reproducibility and reliability
-🚀 Future Improvements
+
+## 🚀 Future Improvements
 Integrate LLM for reasoning (OpenAI/Claude)
 Add RAG-based log intelligence
 Support large-scale log processing
@@ -177,11 +179,11 @@ This project demonstrates:
 ✔ Tool-driven execution
 ✔ Production-oriented architecture
 
-🎥 Demo
+## 🎥 Demo
 
 A short demo video showing system execution and output generation is included in submission.
 
-📌 Final Note
+## 📌 Final Note
 
 This system is designed to mimic real-world debugging workflows, combining:
 
