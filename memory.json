@@ -22,5 +22,34 @@
       "verdict": "Looks good"
     },
     "confidence": 0.9
+  },
+  {
+    "bug_summary": {
+      "issue": "Crash occurs when amount is 0",
+      "priority": "high"
+    },
+    "evidence": {
+      "errors": [
+        "ERROR: Exception occurred",
+        "ZeroDivisionError: division by zero"
+      ]
+    },
+    "repro_steps": "Run: python test_bug.py",
+    "repro_artifact": "test_bug.py",
+    "repro_output": "Traceback (most recent call last):\n  File \"E:\\langgraph-bug-system\\test_bug.py\", line 5, in <module>\n    print(process_payment(0))\n          ^^^^^^^^^^^^^^^^^^\n  File \"E:\\langgraph-bug-system\\test_bug.py\", line 3, in process_payment\n    return 100 / amount\n           ~~~~^~~~~~~~\nZeroDivisionError: division by zero\n",
+    "root_cause": "Division by zero due to missing validation",
+    "patch_plan": {
+      "root_cause": "Division by zero due to missing validation",
+      "patch": "if amount == 0: return 0",
+      "risk": "May hide invalid input",
+      "improvement": "Add proper validation and logging"
+    },
+    "validation_plan": "Add unit tests for zero and negative inputs",
+    "open_questions": "Should zero transactions be allowed?",
+    "critic": {
+      "issues": [],
+      "verdict": "Looks good"
+    },
+    "confidence": 0.9
   }
 ]

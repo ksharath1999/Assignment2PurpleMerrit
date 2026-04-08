@@ -1,5 +1,8 @@
 {
   "title": "Division by zero error",
+  "description": "Crash when processing zero amount",
   "expected_behavior": "Should handle safely",
-  "actual_behavior": "Crash occurs when amount is 0"
+  "actual_behavior": "Crash occurs when amount is 0",
+  "environment": "Python 3.11, Windows",
+  "repro_hints": "Occurs when amount is 0"
 }
