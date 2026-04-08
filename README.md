@@ -1,4 +1,4 @@
-🚀 Multi-Agent Bug Reproduction & Fix System (LangGraph)
+## 🚀 Multi-Agent Bug Reproduction & Fix System (LangGraph)
 ## 👨‍💻 Author
 
 K Sharath
@@ -87,27 +87,27 @@ Checks edge cases
 Flags weak assumptions
 
 ## ⚙️ Core Features
-🔥 Multi-Agent Orchestration
+- 🔥 Multi-Agent Orchestration
 Built using LangGraph
 Stateful execution with shared data
 Explicit agent handoffs
-🔥 Conditional Workflow
+- 🔥 Conditional Workflow
 Dynamic routing based on decision agent
 Bug-confirmed vs no-bug paths
-🔥 Retry Mechanism
+- 🔥 Retry Mechanism
 Reproduction retries on failure
 Improves robustness and reliability
-🔥 Tool Usage
+- 🔥 Tool Usage
 Log parsing tools
 Script execution via subprocess
 Log search/filtering
-🔥 Minimal Reproducible Artifact
+- 🔥 Minimal Reproducible Artifact
 Auto-generated failing script
 Consistent reproduction
-🔥 Memory System
+- 🔥 Memory System
 Stores past runs in memory.json
 Enables future learning/analysis
-🔥 Structured Output
+- 🔥 Structured Output
 
 Example output:
 
